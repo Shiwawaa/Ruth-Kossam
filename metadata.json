@@ -1,0 +1,6 @@
+{
+  "name": "Kossam — Artisanal Cultured Yogurt Drinks",
+  "description": "Scroll-controlled parallax showcase for Kossam Vanille and Fraise cultured yogurt drinks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
