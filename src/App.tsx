@@ -21,7 +21,7 @@ import {
 } from './types/drink';
 
 const STORAGE_KEY_BRAND = 'kossam_brand_config_v2';
-const STORAGE_KEY_VARIANTS = 'kossam_variants_v3';
+const STORAGE_KEY_VARIANTS = 'kossam_variants_v4';
 const STORAGE_KEY_LANG = 'kossam_lang_v1';
 
 function loadStoredBrand(): BrandConfig {
@@ -48,7 +48,10 @@ function loadStoredVariants(): DrinkVariant[] {
     if (!raw) return DEFAULT_VARIANTS;
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed) && parsed.length > 0) {
-      return parsed;
+      return parsed.map((v: DrinkVariant) => {
+        const base = DEFAULT_VARIANTS.find((d) => d.id === v.id);
+        return base ? { ...v, pricePerPack: base.pricePerPack } : v;
+      });
     }
     return DEFAULT_VARIANTS;
   } catch {
